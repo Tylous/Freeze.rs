@@ -38,7 +38,7 @@ ETW utilizes built-in syscalls to generate this telemetry. Since ETW is also a n
 
 ### Shellcode
 
-Since only Ntdll.dll is restored, all subsequent calls to execute shellcode need to reside in Ntdll.dll. Using Rust's NTAPI Crate (note you can do this in other languages but in Rust, its quite easy to implement) we can define and call the NT syscalls needed to allocate, write, and protect the shellcode, effectively skipping the standard calls that are located in Kernel32.dll, and Kernelbase.dll, as these may still be hooked. 
+Since only Ntdll.dll is restored, all subsequent calls to execute shellcode need to reside in Ntdll.dll. Using Rust's NTAPI Crate (note you can do this in other languages but in Rust, its quite easy to implement) we can define and call the NT syscalls needed to allocate, write, and protect the shellcode, effectively skipping the standard calls that are located in Kernel32d.dll, and Kernelbase.dll, as these may still be hooked. 
 
 
 <p align="center"> <img src=Screenshots/Syscalls.png border="2px solid #555">
@@ -59,16 +59,16 @@ This started out a fun project to learn Rust and has grown into its own framewor
 
 
 ## Contributing
-Freeze.rs was developed in Rust.
+Freeze.rs.rs was developed in Rust.
 
 ## Install
 
-If `Rust` and `Rustup` is not installed please install them. If you are compiling it from OSX or Linux sure you have the target "x86_64-pc-windows-gnu" added. To so run the following command:
+If Rust is not installed please install it from here. If you are compiling it from OSX or Linux sure you have the target "x86_64-pc-windows-gnu" added. To so run the following command:
 ```
 rustup target add x86_64-pc-windows-gnu
 ```
 
-Once done you can compile Freeze.rs, run the following commands, or use the compiled binary:
+Once done you can compile Freeze.rs, run the following commands (assuming Rust installed), or use the compiled binary:
 ```
 cargo build --release
 ```
@@ -78,7 +78,6 @@ From there the compiled version will be found in in target/release (note if you 
 ## Help
 
 ```
-
     ___________                                                      
     \_   _____/______   ____   ____ ________ ____     _______  ______
      |    __) \_  __ \_/ __ \_/ __ \\___   // __ \    \_  __ \/  ___/
@@ -99,9 +98,6 @@ FLAGS:
     -h, --help       Prints help information
     -n, --noetw      Disables the ETW patching that prevents ETW events from being generated.
     -s, --sandbox    Enables sandbox evasion by checking:
-                                 Is Endpoint joined to a domain?
-                                 Does the Endpoint have more than 2 CPUs?
-                                 Does the Endpoint have more than 4 gigs of RAM?
     -V, --version    Prints version information
 
 OPTIONS:

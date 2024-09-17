@@ -21,6 +21,7 @@ use std::ptr;
 use winapi::um::wincon::GetConsoleWindow;
 use winapi::um::winuser::{{ShowWindow, SetWindowPos, SWP_NOZORDER, SWP_NOMOVE, SWP_NOSIZE, HWND_TOPMOST, SW_HIDE}};
 use winapi::um::winnt::MAXIMUM_ALLOWED;
+use std::io::Read;
 "#
     )
 }
@@ -30,7 +31,6 @@ pub fn elzmaimports() -> String {
         r#"use std::io::Cursor;
 use xz2::read::XzDecoder;
 use base64::decode;
-use std::io::Read;
 "#
     )
 }
@@ -38,7 +38,6 @@ use std::io::Read;
 pub fn aesimports() -> String {
     format!(
         r#"
-    //use std::{{env,fs}};
 use libaes::Cipher;
 use base64::decode;
 "#
@@ -60,7 +59,7 @@ use winreg::enums::{{HKEY_LOCAL_MACHINE,KEY_READ}};
 use winreg::{{RegKey,HKEY}};
 use std::{{env,process}};
 use std::fs::File;
-use std::io::{{BufReader, Read}};
+use std::io::BufReader;
 use sha2::{{Digest, Sha256}};
 "#
     )
